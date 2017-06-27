@@ -11,13 +11,14 @@ try:
     import unicornhathd as unicorn
     print("16x16 unicorn detected")
 except ImportError:
-    from unicorn_hat_sim import UnicornHatSim
-    unicornhathd = UnicornHatSim(16, 16)
+    from unicorn_hat_sim import unicornhathd as unicorn
 ```
+
+You can choose from `import unicornhathd` (16x16), `import unicornhat` (8x8) and `import unicornphat` (8x4).
 
 ## Demo
 
-(Note that this gif has a low framerate, it's nice and smooth in real life)
+(Note that this gif has a low framerate, the simulator runs nice and smooth in real life)
 
 ![](https://cl.ly/2s070z1k0L3J/Screen%20Recording%202017-06-26%20at%2011.12%20PM.gif)
 

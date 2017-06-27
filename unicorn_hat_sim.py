@@ -8,7 +8,13 @@ except ImportError:
     print("To simulate a unicorn HAT on your computer, please pip install pygame")
 
 class UnicornHatSim(object):
-    def __init__(self, width, height):
+    def __init__(self, width, height, rotation_offset = 0):
+        # Compat with old library
+        self.AUTO = None
+        self.PHAT = None
+            
+        # Set some defaults
+        self.rotation_offset = rotation_offset
         self.rotation(0)
         self.pixels = [(0, 0, 0)] * width * height
         self.pixel_size = 15
@@ -16,6 +22,8 @@ class UnicornHatSim(object):
         self.height = height
         self.window_width = width * self.pixel_size
         self.window_height = height * self.pixel_size
+
+        # Init pygame and off we go
         pygame.init()
         pygame.display.set_caption("Unicorn HAT simulator")
         self.screen = pygame.display.set_mode([self.window_width, self.window_height])
@@ -59,7 +67,7 @@ class UnicornHatSim(object):
         pass
 
     def rotation(self, r):
-        self._rotation = int(round(r/90.0))
+        self._rotation = int(round(r/90.0)) % 3
 
     def clear(self):
         self.screen.fill((0, 0, 0))
@@ -79,7 +87,9 @@ class UnicornHatSim(object):
         pygame.quit()
 
     def index(self, x, y):
-        rot = self.get_rotation()
+        # Offset to match device rotation
+        rot = (self.get_rotation() + self.rotation_offset) % 360
+
         if rot == 0:
             xx = x
             yy = y
@@ -93,3 +103,11 @@ class UnicornHatSim(object):
             xx = y
             yy = self.width - 1 - x
         return (xx * self.width) + yy
+
+# SD hats works as expected
+unicornhat = UnicornHatSim(8,8)
+unicornphat = UnicornHatSim(8, 4)
+
+# Unicornhat HD seems to be the other way around (not that there's anything wrong with that), so we rotate it 180°
+unicornhathd = UnicornHatSim(16, 16, 180)
+
