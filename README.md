@@ -14,7 +14,7 @@ except ImportError:
     from unicorn_hat_sim import unicornhathd as unicorn
 ```
 
-You can choose from `import unicornhathd` (16x16), `import unicornhat` (8x8) and `import unicornphat` (8x4).
+You can choose from `import unicornhathd` (16x16), `import unicornhat` (8x8) and `import unicornphat` (8x4). For now, you'll have to download [unicorn_hat_sim.py](https://raw.githubusercontent.com/jayniz/unicorn-hat-sim/master/unicorn_hat_sim.py) and save it in your project folder. 
 
 ## Demo
 
