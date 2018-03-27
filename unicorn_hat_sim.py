@@ -67,7 +67,7 @@ class UnicornHatSim(object):
         pass
 
     def rotation(self, r):
-        self._rotation = int(round(r/90.0)) % 3
+        self._rotation = int(round(r/90.0)) % 4
 
     def clear(self):
         self.screen.fill((0, 0, 0))
