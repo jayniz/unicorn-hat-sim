@@ -1,0 +1,4 @@
+.vscode/
+build/
+dist/
+unicorn_hat_sim.egg-info/
