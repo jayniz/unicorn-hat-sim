@@ -30,4 +30,4 @@ You can choose from `import unicornhathd` (16x16), `import unicornhat` (8x8) and
 - [ ] find a python person who shows me how this would be done properly
 - [ ] fix/check rotation
 - [ ] add a proper LED glow effect so it looks more like a real unicorn HAT
-- [ ] publish via pip
+- [x] publish via pip
