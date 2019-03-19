@@ -104,7 +104,7 @@ class UnicornHatSim(object):
         elif rot == 270:
             xx = y
             yy = self.width - 1 - x
-        return (xx * self.width) + yy
+        return (xx * self.height) + yy
 
 
 # SD hats works as expected
