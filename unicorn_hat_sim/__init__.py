@@ -1,12 +1,14 @@
 import sys
 import colorsys
 import pygame.gfxdraw
+import os
 
 try:
     import pygame
 except ImportError:
     print("To simulate a unicorn HAT on your computer, please pip install pygame")
 
+os.environ['SDL_VIDEO_WINDOW_POS'] = "%d,%d" % (20,20)
 
 class UnicornHatSim(object):
     def __init__(self, width, height, rotation_offset=0):
@@ -18,7 +20,7 @@ class UnicornHatSim(object):
         self.rotation_offset = rotation_offset
         self.rotation(0)
         self.pixels = [(0, 0, 0)] * width * height
-        self.pixel_size = 15
+        self.pixel_size = 0
         self.width = width
         self.height = height
         self.window_width = width * self.pixel_size
@@ -27,13 +29,26 @@ class UnicornHatSim(object):
         # Init pygame and off we go
         pygame.init()
         pygame.display.set_caption("Unicorn HAT simulator")
+        self.set_pixel_size(15)
+        self.clear()
+
+    def set_pixel_size(self, p):
+      if p > 0:
+        self.pixel_size = p
+        self.window_width = self.width * self.pixel_size
+        self.window_height = self.height * self.pixel_size
         self.screen = pygame.display.set_mode(
             [self.window_width, self.window_height])
-        self.clear()
+      else:
+        print("Invalid pixel size:", p)
+
 
     def set_pixel(self, x, y, r, g, b):
         i = (x * self.width) + y
         self.pixels[i] = [int(r), int(g), int(b)]
+    
+    def set_all(self, r, g, b):
+      self.pixels = [(r, g, b)] * self.width * self.height
 
     def draw(self):
         for event in pygame.event.get():  # User did something
@@ -113,3 +128,4 @@ unicornphat = UnicornHatSim(8, 4)
 
 # Unicornhat HD seems to be the other way around (not that there's anything wrong with that), so we rotate it 180°
 unicornhathd = UnicornHatSim(16, 16, 180)
+
