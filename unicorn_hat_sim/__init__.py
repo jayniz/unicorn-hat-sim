@@ -31,6 +31,9 @@ class UnicornHatSim(object):
             [self.window_width, self.window_height])
         self.clear_display()
 
+    def set_all(self, r, g, b):
+        self.pixels = [(r, g, b)] * self.width * self.height
+        
     def set_pixel(self, x, y, r, g, b):
         i = (x * self.width) + y
         self.pixels[i] = [int(r), int(g), int(b)]
